@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Listings - Explore India</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .hotel-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .hotel-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.2s;
+            text-align: center; /* Center the text in the hotel card */
+        }
+        .hotel-card:hover {
+            transform: scale(1.05);
+        }
+        .hotel-image {
+            width: 100%; /* Make the image responsive */
+            height: 200px; /* Set a fixed height */
+            border-radius: 8px;
+            object-fit: cover; /* Ensure the image covers the area without distortion */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Hotels</h1>
+        <div class="hotel-list">
+            <!-- Sample Hotel Cards -->
+            <div class="hotel-card">
+                <img src="images/novotel.jpg" alt="Novotel" class="hotel-image">
+                <h3>Novotel</h3>
+                <p>Experience the best luxury and comfort.</p>
+                <button onclick="bookHotel('Novotel')">Book Now</button>
+            </div>
+            <div class="hotel-card">
+                <img src="images/hotel-park.jpg" alt="Hotel Park" class="hotel-image">
+                <h3>Hotel Park</h3>
+                <p>Relax and enjoy the Open View.</p>
+                <button onclick="bookHotel('Hotel Park')">Book Now</button>
+            </div>
+            <div class="hotel-card">
+                <img src="images/itc_kohenur.png" alt="ITC Kohenur" class="hotel-image">
+                <h3>ITC Kohenur</h3>
+                <p>Stay in a palace and feel like royalty.</p>
+                <button onclick="bookHotel('ITC Kohenur')">Book Now</button>
+            </div>
+            <div class="hotel-card">
+                <img src="images/avasa.jpg" alt="Avasa" class="hotel-image">
+                <h3>Avasa</h3>
+                <p>Enjoy a unique blend of luxury and comfort.</p>
+                <button onclick="bookHotel('Avasa')">Book Now</button>
+            </div>
+            <div class="hotel-card">
+                <img src="images/hyderabad_marriott.jpg" alt="Hyderabad Marriott" class="hotel-image">
+                <h3>Hyderabad Marriott</h3>
+                <p>Experience a delightful stay with top-notch services.</p>
+                <button onclick="bookHotel('Hyderabad Marriott')">Book Now</button>
+            </div>
+            <div class="hotel-card">
+                <img src="images/taj_krishna.jpg" alt="Taj Krishna" class="hotel-image">
+                <h3>Taj Krishna</h3>
+                <p>Indulge in luxury and elegance.</p>
+                <button onclick="bookHotel('Taj Krishna')">Book Now</button>
+            </div>
+            <!-- Add more hotel cards similarly (up to 15) -->
+        </div>
+    </div>
+
+    <script>
+        function bookHotel(hotelName) {
+            const name = prompt("Enter your name:");
+            const checkIn = prompt("Enter check-in date (YYYY-MM-DD):");
+            const checkOut = prompt("Enter check-out date (YYYY-MM-DD):");
+
+            // Basic validation
+            if (name && checkIn && checkOut) {
+                alert(`Booking successful for ${hotelName}!\nName: ${name}\nCheck-in: ${checkIn}\nCheck-out: ${checkOut}`);
+            } else {
+                alert("Booking not successful. Please fill in all details correctly.");
+            }
+        }
+    </script>
+</body>
+</html>

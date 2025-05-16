@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.navbar h1 {
+    float: left;
+}
+
+.navbar ul {
+    list-style: none;
+    float: right;
+}
+
+.navbar ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header, .cta-form, .features, .benefits, .stats, .testimonials, .faq, .cta, .footer {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.header {
+    color: #fff;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header h2 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.cta-form input, .cta-form button {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.cta-form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.features ul, .benefits ul, .faq .faq-item {
+    list-style: none;
+}
+
+.features ul li, .benefits ul li, .faq .faq-item {
+    margin-bottom: 10px;
+}
+
+.cta-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}

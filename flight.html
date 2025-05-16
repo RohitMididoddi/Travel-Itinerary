@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking - Explore India</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            position: relative;
+            background: url('images/flightimg.jpg') center center/cover no-repeat;
+            height: 60vh; /* 1/4th of the page height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Add a dark overlay */
+            backdrop-filter: blur(5px); /* Blur effect */
+            z-index: 1;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="Home.html">Explore India</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="Home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hotel.html">Hotel Booking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="flight.html">Flight Booking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="carrental.html">Car Rental</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Header Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Book Flights to Your Favorite Indian Destinations</h2>
+            <p>Find the best deals on flights across India.</p>
+        </div>
+    </section>
+
+    <!-- CTA Form Section -->
+    <!-- Updated CTA Form Section -->
+<section class="cta-form py-5">
+    <div class="container">
+        <h3 class="text-center mb-4">Search Flights</h3>
+        <form class="row" action="flightlis.html" method="GET">
+            <div class="col-md-3 mb-3">
+                <select class="form-control" name="departure" required>
+                    <option value="" disabled selected>Departure City</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <select class="form-control" name="destination" required>
+                    <option value="" disabled selected>Destination City</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="date" class="form-control" name="date" required>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="date" class="form-control" name="returnDate">
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary">Search Flights</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+    <!-- Features List Section -->
+    <section class="features py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Why Book Flights With Us?</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <p>Multiple airline options</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <p>Instant booking confirmation</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <p>Flexible date search</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Flight Booking Benefits</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <p>Competitive pricing</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <p>Convenient flight schedules</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <p>Loyalty rewards for frequent flyers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonials py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Customer Testimonials</h2>
+            <blockquote class="blockquote text-center">
+                <p class="mb-0">"Got a great deal on my flight to Delhi! Highly recommend." - Raj K.</p>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">FAQs</h2>
+            <div class="card p-3">
+                <h3>Can I change my flight dates?</h3>
+                <p>Yes, many airlines offer flexible date changes. Please check the airline's policies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta py-5 bg-primary text-white text-center">
+        <div class="container">
+            <h2>Find Your Flights Now</h2>
+            <a href="#" class="btn btn-light mt-3">Search Flights</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white text-center">
+        <div class="container">
+            <p>&copy; 2024 Explore India. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

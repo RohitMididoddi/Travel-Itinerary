@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Flights - Explore India</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Available Flights</h2>
+        <div id="flights-list" class="row"></div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Book Flight</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" id="phone" required>
+                        </div>
+                        <input type="hidden" id="flightDetails">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitBooking">Book Flight</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulated flight data for demonstration purposes
+        const flightsData = [
+            { from: 'Hyderabad', to: 'Delhi', time: '10:00 AM', price: '₹5000' },
+            { from: 'Hyderabad', to: 'Delhi', time: '12:00 PM', price: '₹4500' },
+            { from: 'Hyderabad', to: 'Delhi', time: '3:00 PM', price: '₹5500' },
+            { from: 'Delhi', to: 'Hyderabad', time: '11:00 AM', price: '₹4800' },
+            { from: 'Delhi', to: 'Hyderabad', time: '2:00 PM', price: '₹4600' },
+            { from: 'Delhi', to: 'Hyderabad', time: '1:00 PM', price: '₹4600' },
+            { from: 'Hyderabad', to: 'Mumbai', time: '9:00 AM', price: '₹3000' },
+            { from: 'Mumbai', to: 'Hyderabad', time: '1:00 PM', price: '₹3200' },
+            { from: 'Bengaluru', to: 'Delhi', time: '4:00 PM', price: '₹4000' },
+            { from: 'Delhi', to: 'Bengaluru', time: '8:00 PM', price: '₹4100' },
+            { from: 'Kolkata', to: 'Delhi', time: '5:00 PM', price: '₹4200' },
+            { from: 'Delhi', to: 'Kolkata', time: '7:00 PM', price: '₹4300' }
+        ];
+
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            const results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
+            return results ? decodeURIComponent(results[1]) : null;
+        }
+
+        // Function to display flights based on selected cities
+        function displayFlights() {
+            const departure = getUrlParameter('departure');
+            const destination = getUrlParameter('destination');
+            const flightsList = document.getElementById('flights-list');
+            flightsList.innerHTML = ''; // Clear previous results
+
+            // Log the values for debugging
+            console.log('Departure:', departure);
+            console.log('Destination:', destination);
+
+            // Filter and display flights based on the selected cities (case insensitive)
+            const availableFlights = flightsData.filter(flight => 
+                flight.from.toLowerCase() === departure.toLowerCase() && 
+                flight.to.toLowerCase() === destination.toLowerCase()
+            );
+
+            if (availableFlights.length === 0) {
+                flightsList.innerHTML = '<p class="text-center">No flights available for the selected route.</p>';
+                return;
+            }
+
+            availableFlights.forEach(flight => {
+                flightsList.innerHTML += `
+                    <div class="col-md-4 mb-3">
+                        <div class="card p-3">
+                            <h5>${flight.from} to ${flight.to}</h5>
+                            <p>Departure Time: ${flight.time}</p>
+                            <p>Price: ${flight.price}</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#bookingModal" onclick="setFlightDetails('${flight.from}', '${flight.to}', '${flight.time}', '${flight.price}')">Book Flight</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Function to set flight details in the booking modal
+        function setFlightDetails(from, to, time, price) {
+            document.getElementById('flightDetails').value = `From: ${from}, To: ${to}, Time: ${time}, Price: ${price}`;
+        }
+
+        // Function to validate form inputs
+        function validateBookingForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phonePattern = /^\d{10}$/; // Assuming phone number is 10 digits
+
+            if (!name) {
+                alert('Name is required.');
+                return false;
+            }
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+            if (!phonePattern.test(phone)) {
+                alert('Please enter a valid 10-digit phone number.');
+                return false;
+            }
+            return true;
+        }
+
+        // Function to handle booking submission
+        document.getElementById('submitBooking').onclick = function() {
+            if (validateBookingForm()) {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const flightDetails = document.getElementById('flightDetails').value;
+
+                // Show alert on successful booking
+                alert(`Booking Successful!\n\nDetails:\n${flightDetails}\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`);
+                $('#bookingModal').modal('hide'); // Hide modal after booking
+                document.getElementById('bookingForm').reset(); // Reset form fields
+            }
+        };
+
+        // Call the display function when the page loads
+        window.onload = displayFlights;
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
